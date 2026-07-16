@@ -1,154 +1,21 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JC-MEC | Tarjeta Corporativa</title>
-    <style>
-        :root {
-            --primary-color: #0f172a; /* Azul corporativo oscuro */
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .card-container {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 400px;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .profile-img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--primary-color);
-            margin-bottom: 20px;
-        }
-        h1 {
-            margin: 0;
-            color: var(--text-main);
-            font-size: 24px;
-        }
-        h2 {
-            margin: 5px 0 20px 0;
-            color: var(--text-muted);
-            font-size: 16px;
-            font-weight: 400;
-        }
-        .btn-save {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom: 25px; /* Ajuste de espaciado */
-            transition: background-color 0.3s;
-        }
-        .btn-save:hover {
-            background-color: #1e293b;
-        }
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .link-btn {
-            display: block;
-            text-decoration: none;
-            color: var(--text-main);
-            border: 1px solid #e2e8f0;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-        .link-btn:hover {
-            background-color: var(--bg-color);
-            border-color: #cbd5e1;
-        }
-        
-        /* Nuevos estilos para los contenedores de Wallet */
-        .wallet-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 35px; /* Espaciado que lo separa de los enlaces para enviarlo al fondo */
-            padding-top: 20px;
-            border-top: 1px solid #e2e8f0; /* Una sutil línea divisoria opcional para enmarcarlo al final */
-        }
-        .wallet-badge {
-            height: 44px; /* Altura oficial estándar para insignias de App Store / Wallet */
-            width: auto;
-            transition: transform 0.3s ease;
-        }
-        .wallet-badge:hover {
-            transform: scale(1.03); /* Efecto sutil al pasar el mouse */
-        }
-    </style>
-</head>
-<body>
-
-    <div class="card-container">
-        <!-- Es vital usar la foto subida a tu GitHub (foto.jpg) -->
-        <img src="foto.jpg" alt="Foto de Perfil" class="profile-img" id="miFoto" crossorigin="anonymous">
-        
-        <h1>Juan Camilo Guerra Borrero</h1>
-        <h2>CEO | Michigan Corporation</h2>
-
-        <!-- Botón que ejecuta la función JavaScript para descargar el contacto -->
-        <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
-
-        <!-- Contenedor de enlaces principales -->
-        <div class="links-container">
-            <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
-            <a href="https://www.linkedin.com/in/juancamiloguerraborrero/" class="link-btn" target="_blank">🔗 LinkedIn</a>
-            <a href="https://www.michigancorp.pe/" class="link-btn" target="_blank">🌐 Web Institucional</a>
-        </div>
-
-        <!-- Botones Oficiales de Wallet ubicados al final de la tarjeta -->
-        <div class="wallet-container">
-            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Add_to_Apple_Wallet_logo.svg" alt="Add to Apple Wallet" class="wallet-badge">
-            </a>
-            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Add_to_Google_Wallet_badge.svg" alt="Add to Google Wallet" class="wallet-badge">
-            </a>
-        </div>
-    </div>
-
-    <script>
+<script>
         function descargarVCard() {
             const img = document.getElementById('miFoto');
             const canvas = document.createElement('canvas');
-            canvas.width = img.naturalWidth || img.width || 120;
-            canvas.height = img.naturalHeight || img.height || 120;
+            
+            // EL TRUCO PARA EL IPHONE: Forzamos la foto a un tamaño pequeño (200x200)
+            const tamaño = 200;
+            canvas.width = tamaño;
+            canvas.height = tamaño;
             const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
+            
+            // Dibujamos la imagen ya comprimida
+            ctx.drawImage(img, 0, 0, tamaño, tamaño);
             
             let base64Photo = "";
             try {
-                const dataURL = canvas.toDataURL('image/jpeg');
+                // El '0.8' comprime un poquito la calidad para que el iPhone no la rechace
+                const dataURL = canvas.toDataURL('image/jpeg', 0.8);
                 base64Photo = dataURL.split(',')[1];
             } catch (e) {
                 console.log("No se pudo procesar la foto.");
@@ -178,6 +45,3 @@ END:VCARD`;
             URL.revokeObjectURL(url);
         }
     </script>
-
-</body>
-</html>
