@@ -123,11 +123,9 @@
         </div>
 
         <div class="wallet-container">
+            <!-- Solo se mantiene el botón de Apple Wallet -->
             <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
                 <img src="apple.png" alt="Añadir a Apple Wallet" class="wallet-badge">
-            </a>
-            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
-                <img src="google.png" alt="Añadir a Google Wallet" class="wallet-badge">
             </a>
         </div>
     </div>
@@ -143,12 +141,10 @@
             canvas.height = tamaño;
             const ctx = canvas.getContext('2d');
             
-            // Dibujamos la imagen ya comprimida
             ctx.drawImage(img, 0, 0, tamaño, tamaño);
             
             let base64Photo = "";
             try {
-                // El '0.8' comprime un poquito la calidad para que el iPhone no la rechace
                 const dataURL = canvas.toDataURL('image/jpeg', 0.8);
                 base64Photo = dataURL.split(',')[1];
             } catch (e) {
