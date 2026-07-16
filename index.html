@@ -60,7 +60,7 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             transition: background-color 0.3s;
         }
         .btn-save:hover {
@@ -90,14 +90,24 @@
 <body>
 
     <div class="card-container">
-        <!-- Reemplaza el enlace de abajo por la URL de tu foto profesional -->
-        <img src="https://media.licdn.com/dms/image/v2/D4E03AQF5TvojiUn90A/profile-displayphoto-shrink_400_400/B4EZVeIeTZGYAg-/0/1741041035702?e=1785974400&v=beta&t=_x7MpU3dioeaC1zAZkFIikMZk7y60iK1LsSuCy95aHY" alt="Foto de Perfil" class="profile-img">
+        <!-- Es vital usar la foto subida a tu GitHub (foto.jpg) -->
+        <img src="foto.jpg" alt="Foto de Perfil" class="profile-img" id="miFoto" crossorigin="anonymous">
         
         <h1>Juan Camilo Guerra Borrero</h1>
         <h2>CEO | Michigan Corporation</h2>
 
         <!-- Botón que ejecuta la función JavaScript para descargar el contacto -->
         <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
+
+        <!-- Botones de Wallet con tu enlace de Pass2U -->
+        <div style="display: flex; gap: 10px; margin-bottom: 30px;">
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" class="btn-wallet" style="background-color: #000; color: #fff; flex: 1; text-decoration: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                 Apple Wallet
+            </a>
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" class="btn-wallet" style="background-color: #fff; color: #3c4043; border: 1px solid #dadce0; flex: 1; text-decoration: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="16" height="16"> Google Wallet
+            </a>
+        </div>
 
         <div class="links-container">
             <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
@@ -108,16 +118,31 @@
 
     <script>
         function descargarVCard() {
-            // Aquí configuras los datos exactos que se guardarán en el celular
+            const img = document.getElementById('miFoto');
+            const canvas = document.createElement('canvas');
+            canvas.width = img.naturalWidth || img.width || 120;
+            canvas.height = img.naturalHeight || img.height || 120;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0);
+            
+            let base64Photo = "";
+            try {
+                const dataURL = canvas.toDataURL('image/jpeg');
+                base64Photo = dataURL.split(',')[1];
+            } catch (e) {
+                console.log("No se pudo procesar la foto.");
+            }
+
             const vcard = `BEGIN:VCARD
 VERSION:3.0
 N:Guerra Borrero;Juan Camilo;;;
 FN:Juan Camilo Guerra Borrero
 ORG:Michigan Corporation
-TITLE:Co-Founder
+TITLE:CEO
 TEL;TYPE=WORK,VOICE:+51959289048
 EMAIL;TYPE=WORK:jguerrero@michigancorp.edu.pe
 URL:https://michigancorp.pe
+PHOTO;ENCODING=b;TYPE=JPEG:${base64Photo}
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
@@ -125,7 +150,7 @@ END:VCARD`;
             
             const enlace = document.createElement("a");
             enlace.href = url;
-            enlace.download = "Alonso_Contacto.vcf";
+            enlace.download = "Juan_Camilo_Contacto.vcf";
             document.body.appendChild(enlace);
             enlace.click();
             document.body.removeChild(enlace);
