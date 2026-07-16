@@ -1,4 +1,138 @@
-<script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JC-MEC | Tarjeta Corporativa</title>
+    <style>
+        :root {
+            --primary-color: #0f172a; /* Azul corporativo oscuro */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card-container {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+            color: var(--text-main);
+            font-size: 24px;
+        }
+        h2 {
+            margin: 5px 0 20px 0;
+            color: var(--text-muted);
+            font-size: 16px;
+            font-weight: 400;
+        }
+        .btn-save {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 25px;
+            transition: background-color 0.3s;
+        }
+        .btn-save:hover {
+            background-color: #1e293b;
+        }
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .link-btn {
+            display: block;
+            text-decoration: none;
+            color: var(--text-main);
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .link-btn:hover {
+            background-color: var(--bg-color);
+            border-color: #cbd5e1;
+        }
+        
+        .wallet-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 35px; 
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0; 
+        }
+        .wallet-badge {
+            height: 44px; 
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .wallet-badge:hover {
+            transform: scale(1.03); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        <img src="foto.jpg" alt="Foto de Perfil" class="profile-img" id="miFoto" crossorigin="anonymous">
+        
+        <h1>Juan Camilo Guerra Borrero</h1>
+        <h2>CEO | Michigan Corporation</h2>
+
+        <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
+
+        <div class="links-container">
+            <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
+            <a href="https://www.linkedin.com/in/juancamiloguerraborrero/" class="link-btn" target="_blank">🔗 LinkedIn</a>
+            <a href="https://www.michigancorp.pe/" class="link-btn" target="_blank">🌐 Web Institucional</a>
+        </div>
+
+        <div class="wallet-container">
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
+                <img src="apple.png" alt="Añadir a Apple Wallet" class="wallet-badge">
+            </a>
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
+                <img src="google.png" alt="Añadir a Google Wallet" class="wallet-badge">
+            </a>
+        </div>
+    </div>
+
+    <script>
         function descargarVCard() {
             const img = document.getElementById('miFoto');
             const canvas = document.createElement('canvas');
@@ -21,17 +155,7 @@
                 console.log("No se pudo procesar la foto.");
             }
 
-            const vcard = `BEGIN:VCARD
-VERSION:3.0
-N:Guerra Borrero;Juan Camilo;;;
-FN:Juan Camilo Guerra Borrero
-ORG:Michigan Corporation
-TITLE:CEO
-TEL;TYPE=WORK,VOICE:+51959289048
-EMAIL;TYPE=WORK:jguerrero@michigancorp.edu.pe
-URL:https://michigancorp.pe
-PHOTO;ENCODING=b;TYPE=JPEG:${base64Photo}
-END:VCARD`;
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Guerra Borrero;Juan Camilo;;;\nFN:Juan Camilo Guerra Borrero\nORG:Michigan Corporation\nTITLE:CEO\nTEL;TYPE=WORK,VOICE:+51959289048\nEMAIL;TYPE=WORK:jguerrero@michigancorp.edu.pe\nURL:https://michigancorp.pe\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Photo}\nEND:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
             const url = URL.createObjectURL(blob);
@@ -45,3 +169,6 @@ END:VCARD`;
             URL.revokeObjectURL(url);
         }
     </script>
+
+</body>
+</html>
