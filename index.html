@@ -91,18 +91,18 @@
 
     <div class="card-container">
         <!-- Reemplaza el enlace de abajo por la URL de tu foto profesional -->
-        <img src="https://via.placeholder.com/150" alt="Foto de Perfil" class="profile-img">
+        <img src="https://media.licdn.com/dms/image/v2/D4E03AQF5TvojiUn90A/profile-displayphoto-shrink_400_400/B4EZVeIeTZGYAg-/0/1741041035702?e=1785974400&v=beta&t=_x7MpU3dioeaC1zAZkFIikMZk7y60iK1LsSuCy95aHY" alt="Foto de Perfil" class="profile-img">
         
-        <h1>Alonso</h1>
-        <h2>Coordinador | Assist Card</h2>
+        <h1>Juan Camilo Guerra Borrero</h1>
+        <h2>CEO | Michigan Corporation</h2>
 
         <!-- Botón que ejecuta la función JavaScript para descargar el contacto -->
         <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
 
         <div class="links-container">
-            <a href="mailto:tu-correo@ejemplo.com" class="link-btn">✉️ Enviar Correo</a>
-            <a href="https://linkedin.com/in/tu-perfil" class="link-btn" target="_blank">🔗 LinkedIn</a>
-            <a href="https://tu-instituto.com" class="link-btn" target="_blank">🌐 Web Institucional</a>
+            <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
+            <a href="https://www.linkedin.com/in/juancamiloguerraborrero/" class="link-btn" target="_blank">🔗 LinkedIn</a>
+            <a href="https://www.michigancorp.pe/" class="link-btn" target="_blank">🌐 Web Institucional</a>
         </div>
     </div>
 
@@ -111,12 +111,12 @@
             // Aquí configuras los datos exactos que se guardarán en el celular
             const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:Alonso
-ORG:Assist Card
-TITLE:Coordinador
-TEL;TYPE=WORK,VOICE:+51999999999
-EMAIL;TYPE=WORK:tu-correo@ejemplo.com
-URL:https://tu-sitio-web.com
+FN:Juan Camilo Guerra Borrero
+ORG:Michigan Corporation
+TITLE:Co-Founder
+TEL;TYPE=WORK,VOICE:+51959289048
+EMAIL;TYPE=WORK:jguerrero@michigancorp.edu.pe
+URL:https://michigancorp.pe
 END:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
