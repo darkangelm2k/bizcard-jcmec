@@ -60,7 +60,7 @@
             font-weight: bold;
             cursor: pointer;
             width: 100%;
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Ajuste de espaciado */
             transition: background-color 0.3s;
         }
         .btn-save:hover {
@@ -85,6 +85,26 @@
             background-color: var(--bg-color);
             border-color: #cbd5e1;
         }
+        
+        /* Nuevos estilos para los contenedores de Wallet */
+        .wallet-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 35px; /* Espaciado que lo separa de los enlaces para enviarlo al fondo */
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0; /* Una sutil línea divisoria opcional para enmarcarlo al final */
+        }
+        .wallet-badge {
+            height: 44px; /* Altura oficial estándar para insignias de App Store / Wallet */
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .wallet-badge:hover {
+            transform: scale(1.03); /* Efecto sutil al pasar el mouse */
+        }
     </style>
 </head>
 <body>
@@ -99,20 +119,21 @@
         <!-- Botón que ejecuta la función JavaScript para descargar el contacto -->
         <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
 
-        <!-- Botones de Wallet con tu enlace de Pass2U -->
-        <div style="display: flex; gap: 10px; margin-bottom: 30px;">
-            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" class="btn-wallet" style="background-color: #000; color: #fff; flex: 1; text-decoration: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                 Apple Wallet
-            </a>
-            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" class="btn-wallet" style="background-color: #fff; color: #3c4043; border: 1px solid #dadce0; flex: 1; text-decoration: none; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" width="16" height="16"> Google Wallet
-            </a>
-        </div>
-
+        <!-- Contenedor de enlaces principales -->
         <div class="links-container">
             <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
             <a href="https://www.linkedin.com/in/juancamiloguerraborrero/" class="link-btn" target="_blank">🔗 LinkedIn</a>
             <a href="https://www.michigancorp.pe/" class="link-btn" target="_blank">🌐 Web Institucional</a>
+        </div>
+
+        <!-- Botones Oficiales de Wallet ubicados al final de la tarjeta -->
+        <div class="wallet-container">
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Add_to_Apple_Wallet_logo.svg" alt="Add to Apple Wallet" class="wallet-badge">
+            </a>
+            <a href="https://www.pass2u.net/p/pN_GAkyB_s_q?openExternalBrowser=1" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Add_to_Google_Wallet_badge.svg" alt="Add to Google Wallet" class="wallet-badge">
+            </a>
         </div>
     </div>
 
