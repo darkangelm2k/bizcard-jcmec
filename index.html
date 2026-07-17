@@ -134,7 +134,7 @@
         <button class="btn-save" onclick="descargarVCard()">Guardar en Contactos</button>
 
         <div class="links-container">
-            <a href="mailto:jguerrero@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
+            <a href="mailto:j.guerra@michigancorp.edu.pe" class="link-btn">✉️ Enviar Correo</a>
             <a href="https://www.linkedin.com/in/juancamiloguerraborrero/" class="link-btn" target="_blank">🔗 LinkedIn</a>
             <a href="https://www.michigancorp.pe/" class="link-btn" target="_blank">🌐 Web Institucional</a>
         </div>
@@ -168,7 +168,7 @@
                 console.log("No se pudo procesar la foto.");
             }
 
-            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Guerra Borrero;Juan Camilo;;;\nFN:Juan Camilo Guerra Borrero\nORG:Michigan Corporation\nTITLE:CEO\nTEL;TYPE=WORK,VOICE:+51959289048\nEMAIL;TYPE=WORK:jguerrero@michigancorp.edu.pe\nURL:https://michigancorp.pe\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Photo}\nEND:VCARD`;
+            const vcard = `BEGIN:VCARD\nVERSION:3.0\nN:Guerra Borrero;Juan Camilo;;;\nFN:Juan Camilo Guerra Borrero\nORG:Michigan Corporation\nTITLE:CEO\nTEL;TYPE=WORK,VOICE:+51959289048\nEMAIL;TYPE=WORK:j.guerra@michigancorp.edu.pe\nURL:https://michigancorp.pe\nPHOTO;ENCODING=b;TYPE=JPEG:${base64Photo}\nEND:VCARD`;
 
             const blob = new Blob([vcard], { type: "text/vcard" });
             const url = URL.createObjectURL(blob);
